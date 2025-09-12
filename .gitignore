@@ -1,0 +1,9 @@
+Backend/bounties/__pycache__/
+Backend/bounties/migrations/
+Backend/bountyboard/__pycache__/
+Backend/user/__pycache__/
+Backend/user/migrations/
+Bounty_smart_contract/.algokit/
+Bounty_smart_contract/artifacts/
+Bounty_smart_contract/cache/
+Bounty_smart_contract/projects/Bounty_smart_contract/.tour/
