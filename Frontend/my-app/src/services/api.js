@@ -1,6 +1,6 @@
 import axios from 'axios';
 import env_config from '../Config.js';
-import algosdk from 'algosdk';
+import algosdk, { Algodv2 } from 'algosdk';
 
 const API = axios.create({
   baseURL: '/api', 
@@ -416,7 +416,11 @@ export const transferAlgosToFreelancer = async (
     'release_reward(uint64,address)uint64'
   );
   const boxKey = encodeBoxKeyWithPrefix("users", bountyId);
-  
+
+  const boxdetails = await algodClient.getApplicationBoxByName(env_config.smart_contract_app_id,boxKey).do();
+  const receiverBytes = boxdetails.value.slice(32,64);
+  const receiver = algosdk.encodeAddress(receiverBytes)
+
   atc.addMethodCall({
       appID: env_config.smart_contract_app_id,
       method,
@@ -426,6 +430,7 @@ export const transferAlgosToFreelancer = async (
       ],
       sender: activeAddress,
       suggestedParams,
+      appAccounts:[receiver],
       boxes: [{ appIndex: env_config.smart_contract_app_id, name: boxKey }],
       signer: transactionSigner,
     });
