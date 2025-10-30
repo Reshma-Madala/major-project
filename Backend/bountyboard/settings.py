@@ -82,7 +82,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "bounty_db",
         "USER": "bounty_user",
-        "PASSWORD": "Jona@2005",
+        "PASSWORD": "bounty_pass",
         "HOST": "localhost",
         "PORT": "5432",
     }
